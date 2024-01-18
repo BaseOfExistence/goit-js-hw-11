@@ -22,16 +22,16 @@ form.addEventListener("submit", (event) => {
     event.preventDefault();
     loader.classList.remove("is-hidden");
     searchParams.set("q", searchInput.value);
+    gallery.innerHTML = "";
     fetch(`https://pixabay.com/api/?${searchParams}`)
         .then(response => {
             if (!response.ok) {
-                throw new Error();
+                throw new Error(response.statusText);
             }
             return response.json();
         })
         .then(data => {
-            gallery.innerHTML = "";
-            if (data.hits[0]) {
+            if (data.hits.length > 0) {
                 const html = data.hits.reduce((acum, elem) => {
                     return acum += `<li class="galleryItem">
                                 <a href="${elem.largeImageURL}">
@@ -57,7 +57,6 @@ form.addEventListener("submit", (event) => {
                                 </div>
                              </li>`
                 }, "");
-                loader.classList.add("is-hidden");
                 gallery.innerHTML = html;
                 lightbox.refresh();
             } else {
@@ -67,5 +66,12 @@ form.addEventListener("submit", (event) => {
                 });
             }
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.log(error)
+            iziToast.error({
+                    message: error,
+                    position: 'topRight'
+            });
+        })
+        .finally(loader.classList.add("is-hidden"));
 });
