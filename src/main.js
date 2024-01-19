@@ -73,5 +73,5 @@ form.addEventListener("submit", (event) => {
                     position: 'topRight'
             });
         })
-        .finally(loader.classList.add("is-hidden"));
+        .finally(() => loader.classList.add("is-hidden"));
 });
