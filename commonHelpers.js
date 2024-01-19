@@ -20,5 +20,5 @@ import{S as u,i as a}from"./assets/vendor-46aac873.js";(function(){const t=docum
                                         <p>${e.downloads}</p>
                                     </div>
                                 </div>
-                             </li>`,"");c.innerHTML=s,f.refresh()}else a.error({message:"Sorry, there are no images matching your search query. Please try again!",position:"topRight"})}).catch(t=>{console.log(t),a.error({message:t,position:"topRight"})}).finally(l.classList.add("is-hidden"))});
+                             </li>`,"");c.innerHTML=s,f.refresh()}else a.error({message:"Sorry, there are no images matching your search query. Please try again!",position:"topRight"})}).catch(t=>{console.log(t),a.error({message:t,position:"topRight"})}).finally(()=>l.classList.add("is-hidden"))});
 //# sourceMappingURL=commonHelpers.js.map
